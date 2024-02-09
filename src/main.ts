@@ -127,7 +127,7 @@ export const buildPayload = async () => {
     .filter((x) => x.length > 0)
     .join("\n")
 
-  const attachment = {
+  const payload = {
     text: text,
     fallback: title,
     pretext: title,
@@ -136,7 +136,6 @@ export const buildPayload = async () => {
     footer: footer,
   }
 
-  const payload = { attachments: [attachment] }
   return JSON.stringify(payload)
 }
 

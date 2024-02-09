@@ -28,21 +28,18 @@ const buildPayload = async (env?: Record<string, string>) => {
 }
 
 const getAttachment = async (env?: Record<string, string>) => {
-  const payload = await buildPayload(env)
-  return payload.attachments[0]
+  return await buildPayload(env)
 }
 
 test("build payload structure", async () => {
   const rep = await buildPayload()
   expect(rep).toBeDefined()
-  expect(rep).toHaveProperty("attachments")
-  expect(rep.attachments).toHaveLength(1)
-  expect(rep.attachments[0]).toHaveProperty("text")
-  expect(rep.attachments[0]).toHaveProperty("fallback")
-  expect(rep.attachments[0]).toHaveProperty("pretext")
-  expect(rep.attachments[0]).toHaveProperty("color")
-  expect(rep.attachments[0]).toHaveProperty("mrkdwn_in")
-  expect(rep.attachments[0]).toHaveProperty("footer")
+  expect(rep.text).toHaveProperty("text")
+  expect(rep.fallback).toHaveProperty("fallback")
+  expect(rep.pretext).toHaveProperty("pretext")
+  expect(rep.color).toHaveProperty("color")
+  expect(rep.mrkdwn_in).toHaveProperty("mrkdwn_in")
+  expect(rep.footer).toHaveProperty("footer")
 })
 
 test("minimal workflow (success)", async () => {
