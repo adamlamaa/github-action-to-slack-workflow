@@ -99,9 +99,11 @@ const getWorkflowUrl = async (repo: string, name: string) => {
 }
 
 export const buildPayload = async () => {
+  console.info("Building payload")
   const repo = `${context.repo.owner}/${context.repo.repo}`
   const repoUrl = `${context.serverUrl}/${repo}`
   const jobStatus = getInput("status") as JobStatus
+  console.info(`Job status: ${jobStatus}`)
 
   const patterns: Record<string, string> = {
     repo,
@@ -123,6 +125,10 @@ export const buildPayload = async () => {
   const message = makeMessage(getInput("message_format"), patterns)
   const footer = makeMessage(getInput("footer"), patterns)
 
+  console.info(`Title: ${title}`)
+  console.info(`Message: ${message}`)
+  console.info(`Footer: ${footer}`)
+
   const text = [message, getMentionUsers(jobStatus), getMentionGroups(jobStatus)]
     .filter((x) => x.length > 0)
     .join("\n")
@@ -143,7 +149,7 @@ const notifySlack = async (payload: string) => {
   const webhookUrl = process.env.SLACK_WEBHOOK_URL
   if (!webhookUrl) throw new Error("No SLACK_WEBHOOK_URL provided")
 
-  fetch(webhookUrl, {
+  await fetch(webhookUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: payload,
@@ -157,6 +163,7 @@ const run = async () => {
     if (!notifyWhen.includes(jobStatus)) return
 
     const payload = await buildPayload()
+    console.info("Sending payload to Slack", payload)
     await notifySlack(payload)
   } catch (e) {
     if (e instanceof Error) setFailed(e.message)
