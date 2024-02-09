@@ -177,3 +177,6 @@ out
 lib/
 
 # End of https://www.toptal.com/developers/gitignore/api/node,macos
+
+# Jetbrains config
+.idea
