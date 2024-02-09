@@ -13,7 +13,7 @@
     "package": "rimraf dist && ncc build --license licenses.txt",
     "test": "jest",
     "all": "npm run build && npm run format && npm run lint && npm run package && npm test",
-    "start:dev": "tsc && node --env-file .env lib/main.js"
+    "start:dev": "tsc && node --env-file .env dist/index.js"
   },
   "dependencies": {
     "@actions/core": "^1.9.1",

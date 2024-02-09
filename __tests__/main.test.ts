@@ -21,7 +21,7 @@ const buildPayload = async (env?: Record<string, string>) => {
     ...env,
   }
 
-  const fn = require("../src/main").buildPayload
+  const fn = require("../src").buildPayload
 
   const rep = await fn()
   return JSON.parse(rep)
