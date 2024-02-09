@@ -1,9 +1,9 @@
 {
-  "name": "notify-slack-action",
-  "version": "2.0.0",
+  "name": "github-action-to-slack-workflow",
+  "version": "1.0.0",
   "main": "lib/main.js",
-  "repository": "git@github.com:ravsamhq/notify-slack-action.git",
-  "author": "RavSam Web Solutions",
+  "repository": "git@github.com:adamlamaa/github-action-to-slack-workflow.git",
+  "author": "Adam Kvist Lamaa",
   "license": "MIT",
   "scripts": {
     "build": "rimraf lib && tsc",
