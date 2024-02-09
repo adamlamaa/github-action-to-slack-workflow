@@ -185,7 +185,7 @@ message_format:
 footer:
   description: Specify the footer of the message
   required: false
-  default: "<{run_url}|View Run> | Developed by <https://www.ravsam.in|RavSam>"
+  default: "<{run_url}|View Run>"
 
 notify_when:
   description: Specify on which events a slack notification is sent

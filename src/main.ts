@@ -99,17 +99,13 @@ const getWorkflowUrl = async (repo: string, name: string) => {
 }
 
 export const buildPayload = async () => {
-  console.info("Building payload")
   const repo = `${context.repo.owner}/${context.repo.repo}`
   const repoUrl = `${context.serverUrl}/${repo}`
   const jobStatus = getInput("status") as JobStatus
-  console.info(`Job status: ${jobStatus}`)
 
   const patterns: Record<string, string> = {
     repo,
     branch: context.ref,
-    branch_url: `${repoUrl}/tree/${context.ref.replace("refs/heads/", "")}`,
-    commit_sha: context.sha.substring(0, 7),
     commit_url: `${repoUrl}/commit/${context.sha}`,
     repo_url: `${repoUrl}`,
     run_url: `${repoUrl}/actions/runs/${context.runId}`,
@@ -124,10 +120,6 @@ export const buildPayload = async () => {
   const title = makeMessage(getInput("notification_title"), patterns)
   const message = makeMessage(getInput("message_format"), patterns)
   const footer = makeMessage(getInput("footer"), patterns)
-
-  console.info(`Title: ${title}`)
-  console.info(`Message: ${message}`)
-  console.info(`Footer: ${footer}`)
 
   const text = [message, getMentionUsers(jobStatus), getMentionGroups(jobStatus)]
     .filter((x) => x.length > 0)
@@ -163,7 +155,6 @@ const run = async () => {
     if (!notifyWhen.includes(jobStatus)) return
 
     const payload = await buildPayload()
-    console.info("Sending payload to Slack", payload)
     await notifySlack(payload)
   } catch (e) {
     if (e instanceof Error) setFailed(e.message)

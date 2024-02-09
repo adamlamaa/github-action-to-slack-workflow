@@ -16,11 +16,11 @@ inputs:
   message_format:
     description: Specify on the notification message format
     required: false
-    default: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}@{branch}> on <{commit_url}|{commit_sha}>"
+    default: "{emoji} *{workflow}* {status_message} in <{repo_url}|{repo}@{branch}> on <{commit_url}>"
   footer:
     description: Specify the footer of the message
     required: false
-    default: "<{run_url}|View Run> | Developed by <https://www.ravsam.in|RavSam>"
+    default: "<{run_url}|View Run>"
   notify_when:
     description: Specify on which events a slack notification is sent
     required: false

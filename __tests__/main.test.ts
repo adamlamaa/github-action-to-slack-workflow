@@ -34,12 +34,12 @@ const getAttachment = async (env?: Record<string, string>) => {
 test("build payload structure", async () => {
   const rep = await buildPayload()
   expect(rep).toBeDefined()
-  expect(rep.text).toHaveProperty("text")
-  expect(rep.fallback).toHaveProperty("fallback")
-  expect(rep.pretext).toHaveProperty("pretext")
-  expect(rep.color).toHaveProperty("color")
-  expect(rep.mrkdwn_in).toHaveProperty("mrkdwn_in")
-  expect(rep.footer).toHaveProperty("footer")
+  expect(rep).toHaveProperty("text")
+  expect(rep).toHaveProperty("fallback")
+  expect(rep).toHaveProperty("pretext")
+  expect(rep).toHaveProperty("color")
+  expect(rep).toHaveProperty("mrkdwn_in")
+  expect(rep).toHaveProperty("footer")
 })
 
 test("minimal workflow (success)", async () => {
