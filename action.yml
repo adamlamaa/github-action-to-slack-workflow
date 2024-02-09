@@ -1,6 +1,6 @@
 name: Notify Slack Action
 description: Send Github Actions workflow status notifications to Slack
-author: RavSam Web Solutions
+author: RavSam Web Solutions modified by Adam Kvist Lamaa
 inputs:
   status:
     description: Job Status
@@ -67,5 +67,5 @@ branding:
   color: blue
 
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"
